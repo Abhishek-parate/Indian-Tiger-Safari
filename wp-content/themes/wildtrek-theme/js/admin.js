@@ -8,12 +8,13 @@
 jQuery(document).ready(function($) {
     
     // ============================================
-    // MEDIA UPLOADER: HERO IMAGE
+    // MEDIA UPLOADER: HERO IMAGES (All 4)
     // ============================================
     $('.upload-hero-image').on('click', function(e) {
         e.preventDefault();
         var button = $(this);
-        var input = $('#package_hero_image');
+        var targetId = button.data('target');
+        var input = $('#' + targetId);
         
         var mediaUploader = wp.media({
             title: 'Select Hero/Banner Image',
@@ -26,13 +27,14 @@ jQuery(document).ready(function($) {
             input.val(attachment.url);
             
             // Show preview
-            var preview = '<div style="margin-top: 10px;"><img src="' + attachment.url + '" style="max-width: 300px; height: auto; border: 1px solid #ddd; padding: 5px;" /></div>';
+            var preview = '<div style="margin-top: 10px;"><img src="' + attachment.url + '" style="max-width: ' + (targetId === 'package_hero_image' ? '300' : '200') + 'px; height: auto; border: 1px solid #ddd; padding: 5px;" /></div>';
             button.parent().find('img').parent().remove();
             button.parent().append(preview);
         });
         
         mediaUploader.open();
     });
+
     
     // ============================================
     // MEDIA UPLOADER: GALLERY IMAGES

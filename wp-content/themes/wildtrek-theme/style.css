@@ -90,31 +90,116 @@ h2 {
     margin-bottom: 20px;
 }
 
+.package-hero-multi {
+    position: relative;
+    min-height: 600px;
+    background: #000;
+    overflow: hidden;
+}
+
+.hero-images-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 10px;
+    height: 600px;
+    padding: 0;
+}
+
+.hero-main-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-side-images {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+.hero-side-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-side-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Overlay Content on Images */
+.hero-content-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3));
+    color: white;
+    padding: 40px 0 30px;
+    z-index: 10;
+}
+
+.hero-content-overlay .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-content-overlay .subtitle {
+    font-size: 16px;
+    margin-bottom: 10px;
+    opacity: 0.95;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.hero-content-overlay h1 {
+    font-size: 42px;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    line-height: 1.2;
+}
+
+.hero-content-overlay .location {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+
 .price-box {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .price-box .price,
 .price-box .discount-price {
-    font-size: 42px;
+    font-size: 38px;
     font-weight: bold;
     color: #f0a500;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 .price-box .original-price {
-    font-size: 28px;
+    font-size: 24px;
     text-decoration: line-through;
     color: #ccc;
     margin-right: 15px;
 }
 
 .price-box .price-note {
-    display: block;
-    font-size: 16px;
-    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px;
+    margin-left: 10px;
     opacity: 0.9;
 }
+
 
 /* ===== PACKAGE STATS ===== */
 .package-stats {
@@ -526,13 +611,24 @@ h2 {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .hero-content h1 {
-        font-size: 32px;
+    .hero-images-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: 400px auto;
+        height: auto;
+    }
+    
+    .hero-side-images {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 150px;
+    }
+    
+    .hero-content-overlay h1 {
+        font-size: 28px;
     }
     
     .price-box .price,
     .price-box .discount-price {
-        font-size: 32px;
+        font-size: 28px;
     }
     
     .stats-grid,
@@ -562,8 +658,22 @@ h2 {
 }
 
 @media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 26px;
+    .hero-images-grid {
+        grid-template-rows: 300px auto;
+    }
+    
+    .hero-side-images {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 120px);
+        gap: 5px;
+    }
+    
+    .hero-content-overlay {
+        padding: 30px 0 20px;
+    }
+    
+    .hero-content-overlay h1 {
+        font-size: 24px;
     }
     
     .container {

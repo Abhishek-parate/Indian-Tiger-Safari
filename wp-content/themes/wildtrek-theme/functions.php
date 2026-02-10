@@ -315,21 +315,32 @@ function wildtrek_package_details_callback($post) {
 }
 
 // ============================================
-// META BOX CALLBACK: HERO/BANNER SECTION
+// META BOX CALLBACK: HERO/BANNER SECTION (4 IMAGES)
 // ============================================
 function wildtrek_hero_section_callback($post) {
     $hero_image = get_post_meta($post->ID, '_package_hero_image', true);
+    $hero_image_2 = get_post_meta($post->ID, '_package_hero_image_2', true);
+    $hero_image_3 = get_post_meta($post->ID, '_package_hero_image_3', true);
+    $hero_image_4 = get_post_meta($post->ID, '_package_hero_image_4', true);
+    
     $price = get_post_meta($post->ID, '_package_price', true);
-    $price_note = get_post_meta($post->ID, '_package_price_note', true);
     $discount_price = get_post_meta($post->ID, '_package_discount_price', true);
+    $price_note = get_post_meta($post->ID, '_package_price_note', true);
     ?>
+    
+    <p style="background: #e7f3ff; padding: 15px; border-left: 4px solid #2196F3; margin-bottom: 20px;">
+        <strong>📸 Hero Banner with 4 Images:</strong> Upload 4 images for the banner section. 
+        Image 1 will be large (left side), Images 2-4 will be smaller (right side in a column).
+    </p>
+    
     <table class="form-table">
+        <!-- HERO IMAGE 1 (Main Large) -->
         <tr>
-            <th><label for="package_hero_image">Hero Background Image URL</label></th>
+            <th style="width: 200px;"><label>Hero Image 1 (Main):</label></th>
             <td>
-                <input type="text" id="package_hero_image" name="package_hero_image" value="<?php echo esc_attr($hero_image); ?>" class="large-text" />
-                <button type="button" class="button upload-hero-image">📁 Upload Image</button>
-                <p class="description">This will be the main banner image at the top</p>
+                <input type="text" id="package_hero_image" name="package_hero_image" value="<?php echo esc_attr($hero_image); ?>" class="large-text" readonly />
+                <button type="button" class="button upload-hero-image" data-target="package_hero_image">📁 Upload Image 1</button>
+                <p class="description">This will be the main large image on the left (Recommended: 800x600px)</p>
                 <?php if ($hero_image): ?>
                     <div style="margin-top: 10px;">
                         <img src="<?php echo esc_url($hero_image); ?>" style="max-width: 300px; height: auto; border: 1px solid #ddd; padding: 5px;" />
@@ -337,29 +348,84 @@ function wildtrek_hero_section_callback($post) {
                 <?php endif; ?>
             </td>
         </tr>
+        
+        <!-- HERO IMAGE 2 -->
         <tr>
-            <th><label for="package_price">Package Price</label></th>
+            <th><label>Hero Image 2 (Top Right):</label></th>
             <td>
-                <input type="text" id="package_price" name="package_price" value="<?php echo esc_attr($price); ?>" class="regular-text" placeholder="e.g., $2,500" />
-                <p class="description">Main display price</p>
+                <input type="text" id="package_hero_image_2" name="package_hero_image_2" value="<?php echo esc_attr($hero_image_2); ?>" class="large-text" readonly />
+                <button type="button" class="button upload-hero-image" data-target="package_hero_image_2">📁 Upload Image 2</button>
+                <p class="description">Smaller image - top right position (Recommended: 400x300px)</p>
+                <?php if ($hero_image_2): ?>
+                    <div style="margin-top: 10px;">
+                        <img src="<?php echo esc_url($hero_image_2); ?>" style="max-width: 200px; height: auto; border: 1px solid #ddd; padding: 5px;" />
+                    </div>
+                <?php endif; ?>
             </td>
         </tr>
+        
+        <!-- HERO IMAGE 3 -->
         <tr>
-            <th><label for="package_discount_price">Discount Price (Optional)</label></th>
+            <th><label>Hero Image 3 (Middle Right):</label></th>
             <td>
-                <input type="text" id="package_discount_price" name="package_discount_price" value="<?php echo esc_attr($discount_price); ?>" class="regular-text" placeholder="e.g., $2,200" />
-                <p class="description">If there's a special offer/discount</p>
+                <input type="text" id="package_hero_image_3" name="package_hero_image_3" value="<?php echo esc_attr($hero_image_3); ?>" class="large-text" readonly />
+                <button type="button" class="button upload-hero-image" data-target="package_hero_image_3">📁 Upload Image 3</button>
+                <p class="description">Smaller image - middle right position (Recommended: 400x300px)</p>
+                <?php if ($hero_image_3): ?>
+                    <div style="margin-top: 10px;">
+                        <img src="<?php echo esc_url($hero_image_3); ?>" style="max-width: 200px; height: auto; border: 1px solid #ddd; padding: 5px;" />
+                    </div>
+                <?php endif; ?>
             </td>
         </tr>
+        
+        <!-- HERO IMAGE 4 -->
         <tr>
-            <th><label for="package_price_note">Price Note</label></th>
+            <th><label>Hero Image 4 (Bottom Right):</label></th>
             <td>
-                <input type="text" id="package_price_note" name="package_price_note" value="<?php echo esc_attr($price_note); ?>" class="large-text" placeholder="e.g., Per Person" />
+                <input type="text" id="package_hero_image_4" name="package_hero_image_4" value="<?php echo esc_attr($hero_image_4); ?>" class="large-text" readonly />
+                <button type="button" class="button upload-hero-image" data-target="package_hero_image_4">📁 Upload Image 4</button>
+                <p class="description">Smaller image - bottom right position (Recommended: 400x300px)</p>
+                <?php if ($hero_image_4): ?>
+                    <div style="margin-top: 10px;">
+                        <img src="<?php echo esc_url($hero_image_4); ?>" style="max-width: 200px; height: auto; border: 1px solid #ddd; padding: 5px;" />
+                    </div>
+                <?php endif; ?>
+            </td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><hr style="margin: 20px 0;"></td>
+        </tr>
+        
+        <!-- PRICE FIELDS -->
+        <tr>
+            <th><label>Package Price:</label></th>
+            <td>
+                <input type="text" name="package_price" value="<?php echo esc_attr($price); ?>" class="regular-text" placeholder="₹15,999" />
+                <p class="description">Main display price (e.g., ₹15,999 or $299)</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th><label>Discount Price:</label></th>
+            <td>
+                <input type="text" name="package_discount_price" value="<?php echo esc_attr($discount_price); ?>" class="regular-text" placeholder="₹12,999" />
+                <p class="description">If there's a special offer/discount (leave empty if no discount)</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th><label>Price Note:</label></th>
+            <td>
+                <input type="text" name="package_price_note" value="<?php echo esc_attr($price_note); ?>" class="large-text" placeholder="per person" />
+                <p class="description">Additional price information (e.g., "per person", "all inclusive")</p>
             </td>
         </tr>
     </table>
     <?php
 }
+
 
 // ============================================
 // META BOX CALLBACK: GALLERY SECTION
@@ -753,9 +819,9 @@ function wildtrek_save_package_data($post_id) {
         return;
     }
     
-    // SAVE: Package Details
+    // SAVE Package Details
     $simple_fields = array(
-        'package_subtitle', 'package_location', 'package_duration', 
+        'package_subtitle', 'package_location', 'package_duration',
         'package_group_size', 'package_difficulty', 'package_best_time',
         'package_accommodation', 'package_meals'
     );
@@ -766,10 +832,21 @@ function wildtrek_save_package_data($post_id) {
         }
     }
     
-    // SAVE: Hero Section
+    // SAVE Hero Section (All 4 Images + Pricing) - FIXED
     if (isset($_POST['package_hero_image'])) {
         update_post_meta($post_id, '_package_hero_image', sanitize_text_field($_POST['package_hero_image']));
     }
+    if (isset($_POST['package_hero_image_2'])) {
+        update_post_meta($post_id, '_package_hero_image_2', sanitize_text_field($_POST['package_hero_image_2']));
+    }
+    if (isset($_POST['package_hero_image_3'])) {
+        update_post_meta($post_id, '_package_hero_image_3', sanitize_text_field($_POST['package_hero_image_3']));
+    }
+    if (isset($_POST['package_hero_image_4'])) {
+        update_post_meta($post_id, '_package_hero_image_4', sanitize_text_field($_POST['package_hero_image_4']));
+    }
+    
+    // Save pricing info
     if (isset($_POST['package_price'])) {
         update_post_meta($post_id, '_package_price', sanitize_text_field($_POST['package_price']));
     }
@@ -780,7 +857,7 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_price_note', sanitize_text_field($_POST['package_price_note']));
     }
     
-    // SAVE: Gallery
+    // SAVE Gallery
     if (isset($_POST['package_gallery']) && is_array($_POST['package_gallery'])) {
         $gallery = array();
         foreach ($_POST['package_gallery'] as $image) {
@@ -794,7 +871,7 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_gallery', $gallery);
     }
     
-    // SAVE: Stats
+    // SAVE Stats
     if (isset($_POST['package_stats']) && is_array($_POST['package_stats'])) {
         $stats = array();
         foreach ($_POST['package_stats'] as $stat) {
@@ -809,7 +886,7 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_stats', $stats);
     }
     
-    // SAVE: Overview
+    // SAVE Overview
     if (isset($_POST['package_overview_title'])) {
         update_post_meta($post_id, '_package_overview_title', sanitize_text_field($_POST['package_overview_title']));
     }
@@ -817,7 +894,7 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_overview_content', wp_kses_post($_POST['package_overview_content']));
     }
     
-    // SAVE: Itinerary
+    // SAVE Itinerary
     if (isset($_POST['package_itinerary']) && is_array($_POST['package_itinerary'])) {
         $itinerary = array();
         foreach ($_POST['package_itinerary'] as $day) {
@@ -832,12 +909,12 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_itinerary', $itinerary);
     }
     
-    // SAVE: Highlights
+    // SAVE Highlights
     if (isset($_POST['package_highlights'])) {
         update_post_meta($post_id, '_package_highlights', sanitize_textarea_field($_POST['package_highlights']));
     }
     
-    // SAVE: What's Included/Excluded
+    // SAVE What's Included/Excluded
     if (isset($_POST['package_whats_included'])) {
         update_post_meta($post_id, '_package_whats_included', sanitize_textarea_field($_POST['package_whats_included']));
     }
@@ -845,18 +922,16 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_whats_excluded', sanitize_textarea_field($_POST['package_whats_excluded']));
     }
     
-    // SAVE: Cost
-    $cost_fields = array(
-        'package_cost_includes_title', 'package_cost_includes',
-        'package_cost_excludes_title', 'package_cost_excludes', 'package_cost_note'
-    );
+    // SAVE Cost
+    $cost_fields = array('package_cost_includes_title', 'package_cost_includes', 
+                        'package_cost_excludes_title', 'package_cost_excludes', 'package_cost_note');
     foreach ($cost_fields as $field) {
         if (isset($_POST[$field])) {
             update_post_meta($post_id, '_' . $field, sanitize_textarea_field($_POST[$field]));
         }
     }
     
-    // SAVE: FAQs
+    // SAVE FAQs
     if (isset($_POST['package_faqs']) && is_array($_POST['package_faqs'])) {
         $faqs = array();
         foreach ($_POST['package_faqs'] as $faq) {
@@ -870,12 +945,12 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_faqs', $faqs);
     }
     
-    // SAVE: Terms
+    // SAVE Terms
     if (isset($_POST['package_terms_conditions'])) {
         update_post_meta($post_id, '_package_terms_conditions', wp_kses_post($_POST['package_terms_conditions']));
     }
     
-    // SAVE: Location
+    // SAVE Location
     if (isset($_POST['package_map_embed'])) {
         update_post_meta($post_id, '_package_map_embed', wp_kses_post($_POST['package_map_embed']));
     }
@@ -886,7 +961,7 @@ function wildtrek_save_package_data($post_id) {
         update_post_meta($post_id, '_package_map_longitude', sanitize_text_field($_POST['package_map_longitude']));
     }
     
-    // SAVE: SEO
+    // SAVE SEO
     if (isset($_POST['package_meta_title'])) {
         update_post_meta($post_id, '_package_meta_title', sanitize_text_field($_POST['package_meta_title']));
     }
@@ -898,6 +973,7 @@ function wildtrek_save_package_data($post_id) {
     }
 }
 add_action('save_post_package', 'wildtrek_save_package_data');
+
 
 // ============================================
 // ENQUEUE ADMIN SCRIPTS & STYLES

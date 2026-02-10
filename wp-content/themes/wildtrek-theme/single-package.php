@@ -47,11 +47,56 @@ while (have_posts()) : the_post();
     $map_embed = get_post_meta(get_the_ID(), '_package_map_embed', true);
     ?>
 
-    <!-- ============================================ -->
-    <!-- HERO SECTION -->
-    <!-- ============================================ -->
-    <section class="package-hero" style="background-image: url('<?php echo esc_url($hero_image ? $hero_image : get_the_post_thumbnail_url(get_the_ID(), 'full')); ?>');">
-        <div class="hero-content">
+<!-- ============================================ -->
+<!-- HERO SECTION WITH 4 IMAGES -->
+<!-- ============================================ -->
+<?php
+// Get hero images
+$hero_image = get_post_meta(get_the_ID(), '_package_hero_image', true);
+$hero_image_2 = get_post_meta(get_the_ID(), '_package_hero_image_2', true);
+$hero_image_3 = get_post_meta(get_the_ID(), '_package_hero_image_3', true);
+$hero_image_4 = get_post_meta(get_the_ID(), '_package_hero_image_4', true);
+
+// Fallback to featured image if hero image not set
+if (empty($hero_image)) {
+    $hero_image = get_the_post_thumbnail_url(get_the_ID(), 'full');
+}
+?>
+
+<section class="package-hero-multi">
+    <div class="hero-images-grid">
+        <!-- Main Large Image (Left) -->
+        <div class="hero-main-image">
+            <?php if ($hero_image): ?>
+                <img src="<?php echo esc_url($hero_image); ?>" alt="<?php the_title(); ?>" loading="eager">
+            <?php endif; ?>
+        </div>
+        
+        <!-- 3 Smaller Images (Right Column) -->
+        <div class="hero-side-images">
+            <?php if ($hero_image_2): ?>
+                <div class="hero-side-image">
+                    <img src="<?php echo esc_url($hero_image_2); ?>" alt="<?php the_title(); ?> - Image 2" loading="eager">
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($hero_image_3): ?>
+                <div class="hero-side-image">
+                    <img src="<?php echo esc_url($hero_image_3); ?>" alt="<?php the_title(); ?> - Image 3" loading="eager">
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($hero_image_4): ?>
+                <div class="hero-side-image">
+                    <img src="<?php echo esc_url($hero_image_4); ?>" alt="<?php the_title(); ?> - Image 4" loading="eager">
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+    
+    <!-- Overlay Content -->
+    <div class="hero-content-overlay">
+        <div class="container">
             <?php if ($subtitle): ?>
                 <p class="subtitle"><?php echo esc_html($subtitle); ?></p>
             <?php endif; ?>
@@ -73,7 +118,9 @@ while (have_posts()) : the_post();
                 </div>
             <?php endif; ?>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- ============================================ -->
     <!-- PACKAGE STATS SECTION -->
