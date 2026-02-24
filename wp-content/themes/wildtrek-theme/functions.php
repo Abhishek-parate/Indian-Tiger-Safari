@@ -241,78 +241,36 @@ function wildtrek_package_details_callback($post) {
     wp_nonce_field('wildtrek_save_package_data', 'wildtrek_package_nonce');
     
     $package_subtitle = get_post_meta($post->ID, '_package_subtitle', true);
-    $package_location = get_post_meta($post->ID, '_package_location', true);
-    $package_duration = get_post_meta($post->ID, '_package_duration', true);
-    $package_group_size = get_post_meta($post->ID, '_package_group_size', true);
-    $package_difficulty = get_post_meta($post->ID, '_package_difficulty', true);
-    $package_best_time = get_post_meta($post->ID, '_package_best_time', true);
-    $package_accommodation = get_post_meta($post->ID, '_package_accommodation', true);
-    $package_meals = get_post_meta($post->ID, '_package_meals', true);
+    $package_days = get_post_meta($post->ID, '_package_days', true);
     ?>
+    
     <table class="form-table">
         <tr>
-            <th><label for="package_subtitle">Package Subtitle/Tagline</label></th>
+            <th><label for="package_subtitle">Package Subtitle/Tagline:</label></th>
             <td>
-                <input type="text" id="package_subtitle" name="package_subtitle" value="<?php echo esc_attr($package_subtitle); ?>" class="large-text" placeholder="e.g., Experience a Jungle Safari in Chitwan" />
+                <input type="text" id="package_subtitle" name="package_subtitle" 
+                       value="<?php echo esc_attr($package_subtitle); ?>" 
+                       class="large-text" 
+                       placeholder="e.g., Adventure of a Lifetime">
+                <p class="description">A catchy subtitle or tagline for the package</p>
             </td>
         </tr>
+        
         <tr>
-            <th><label for="package_location">Package Location</label></th>
+            <th><label for="package_days">Days:</label></th>
             <td>
-                <input type="text" id="package_location" name="package_location" value="<?php echo esc_attr($package_location); ?>" class="large-text" placeholder="e.g., Chitwan National Park, Nepal" />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_duration">Tour Duration</label></th>
-            <td>
-                <input type="text" id="package_duration" name="package_duration" value="<?php echo esc_attr($package_duration); ?>" class="regular-text" placeholder="e.g., 8 Days, 7 Nights" />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_group_size">Group Size</label></th>
-            <td>
-                <input type="text" id="package_group_size" name="package_group_size" value="<?php echo esc_attr($package_group_size); ?>" class="regular-text" placeholder="e.g., 2-15 People" />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_difficulty">Difficulty Level</label></th>
-            <td>
-                <select id="package_difficulty" name="package_difficulty" class="regular-text">
-                    <option value="">Select Difficulty</option>
-                    <option value="Easy" <?php selected($package_difficulty, 'Easy'); ?>>Easy</option>
-                    <option value="Moderate" <?php selected($package_difficulty, 'Moderate'); ?>>Moderate</option>
-                    <option value="Challenging" <?php selected($package_difficulty, 'Challenging'); ?>>Challenging</option>
-                    <option value="Difficult" <?php selected($package_difficulty, 'Difficult'); ?>>Difficult</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_best_time">Best Time to Visit</label></th>
-            <td>
-                <input type="text" id="package_best_time" name="package_best_time" value="<?php echo esc_attr($package_best_time); ?>" class="large-text" placeholder="e.g., March to May, September to November" />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_accommodation">Accommodation Type</label></th>
-            <td>
-                <input type="text" id="package_accommodation" name="package_accommodation" value="<?php echo esc_attr($package_accommodation); ?>" class="large-text" placeholder="e.g., 3-Star Hotels, Resort" />
-            </td>
-        </tr>
-        <tr>
-            <th><label for="package_meals">Meals Included</label></th>
-            <td>
-                <input type="text" id="package_meals" name="package_meals" value="<?php echo esc_attr($package_meals); ?>" class="large-text" placeholder="e.g., Breakfast & Dinner" />
+                <input type="number" id="package_days" name="package_days" 
+                       value="<?php echo esc_attr($package_days); ?>" 
+                       min="1" 
+                       placeholder="e.g., 5">
+                <p class="description">Number of days for this package</p>
             </td>
         </tr>
     </table>
-    <style>
-        .form-table th { width: 250px; font-weight: 600; }
-        .form-table td input[type="text"], 
-        .form-table td select,
-        .form-table td textarea { margin: 5px 0; }
-    </style>
+    
     <?php
 }
+
 
 // ============================================
 // META BOX CALLBACK: HERO/BANNER SECTION (4 IMAGES)

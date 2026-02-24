@@ -101,9 +101,7 @@ if (empty($hero_image)) {
                 <p class="subtitle"><?php echo esc_html($subtitle); ?></p>
             <?php endif; ?>
             <h1><?php the_title(); ?></h1>
-            <?php if ($location): ?>
-                <p class="location">📍 <?php echo esc_html($location); ?></p>
-            <?php endif; ?>
+
             <?php if ($price): ?>
                 <div class="price-box">
                     <?php if ($discount_price): ?>
